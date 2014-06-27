@@ -124,11 +124,14 @@ public class BundleLauncherHelper {
 				}
 
 				for (int i = 0; i < featurePlugins.length; i++) {
-					ModelEntry modelEntry = PluginRegistry.findEntry(featurePlugins[i].getId());
-					if (modelEntry != null) {
-						IPluginModelBase model = findModel(modelEntry, featurePlugins[i].getVersion(), pluginResolution);
-						if (model != null)
-							launchPlugins.add(model);
+					IFeaturePlugin featurePlugin = featurePlugins[i];
+					if (platformFilterMatchTargetPlatform(featurePlugin)) {
+						ModelEntry modelEntry = PluginRegistry.findEntry(featurePlugin.getId());
+						if (modelEntry != null) {
+							IPluginModelBase model = findModel(modelEntry, featurePlugin.getVersion(), pluginResolution);
+							if (model != null)
+								launchPlugins.add(model);
+						}
 					}
 				}
 
@@ -210,6 +213,26 @@ public class BundleLauncherHelper {
 		map = getWorkspaceBundleMap(configuration, set, workspace);
 		map.putAll(getTargetBundleMap(configuration, set, target));
 		return map;
+	}
+
+	private static boolean platformFilterMatchTargetPlatform(IFeaturePlugin featurePlugin) {
+		if (!match(featurePlugin.getArch(), TargetPlatform.getOSArch())) {
+			return false;
+		}
+		if (!match(featurePlugin.getNL(), TargetPlatform.getNL())) {
+			return false;
+		}
+		if (!match(featurePlugin.getOS(), TargetPlatform.getOS())) {
+			return false;
+		}
+		if (!match(featurePlugin.getWS(), TargetPlatform.getWS())) {
+			return false;
+		}
+		return true;
+	}
+
+	private static boolean match(String pluginProperty, String platformProperty) {
+		return pluginProperty == null || pluginProperty.equals(platformProperty);
 	}
 
 	/**
