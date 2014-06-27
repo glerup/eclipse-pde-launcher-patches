@@ -161,17 +161,19 @@ public class BundleLauncherHelper {
 				}
 			}
 
-			// Get all required plugins
-			// exclude "org.eclipse.ui.workbench.compatibility" - it is only needed for pre-3.0 bundles
-			Set<String> additionalIds = DependencyManager.getDependencies(launchPlugins.toArray(), false, new String[] {"org.eclipse.ui.workbench.compatibility"}); //$NON-NLS-1$
-			Iterator<String> it = additionalIds.iterator();
-			while (it.hasNext()) {
-				String id = it.next();
-				ModelEntry modelEntry = PluginRegistry.findEntry(id);
-				if (modelEntry != null) {
-					IPluginModelBase model = findModel(modelEntry, null, defaultPluginResolution);
-					if (model != null)
-						launchPlugins.add(model);
+			if (configuration.getAttribute(IPDELauncherConstants.AUTOMATIC_ADD_DEPENDENCIES, false)) {
+				// Get all required plugins
+				// exclude "org.eclipse.ui.workbench.compatibility" - it is only needed for pre-3.0 bundles
+				Set<String> additionalIds = DependencyManager.getDependencies(launchPlugins.toArray(), false, new String[] {"org.eclipse.ui.workbench.compatibility"}); //$NON-NLS-1$
+				Iterator<String> it = additionalIds.iterator();
+				while (it.hasNext()) {
+					String id = it.next();
+					ModelEntry modelEntry = PluginRegistry.findEntry(id);
+					if (modelEntry != null) {
+						IPluginModelBase model = findModel(modelEntry, null, defaultPluginResolution);
+						if (model != null)
+							launchPlugins.add(model);
+					}
 				}
 			}
 
