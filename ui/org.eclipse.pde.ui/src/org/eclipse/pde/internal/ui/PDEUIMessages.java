@@ -94,6 +94,8 @@ public class PDEUIMessages extends NLS {
 
 	public static String FeatureBlock_UseWorkspaceFeatures;
 
+	public static String FeatureBlock_AutoAddDependencies;
+
 	public static String FeatureBlock_workspaceBefore;
 
 	public static String FeatureBlock_WorkspaceResolutionLabel;

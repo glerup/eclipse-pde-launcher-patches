@@ -493,4 +493,13 @@ public interface IPDELauncherConstants {
 	 * @since 3.6
 	 */
 	String ADDITIONAL_PLUGINS = "additional_plugins"; //$NON-NLS-1$
+
+	/**
+	 * Launch configuration attribute key. The value is a boolean that indicates if
+	 * dependencies should be automatically added prior to launching (when
+	 * {@link #AUTOMATIC_ADD_DEPENDENCIES} is set to <code>true</code>).
+	 *
+	 * @since 3.6
+	 */
+	String AUTOMATIC_ADD_DEPENDENCIES = "automatic_add_dependencies"; //$NON-NLS-1$
 }

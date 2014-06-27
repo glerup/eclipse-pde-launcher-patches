@@ -758,6 +758,7 @@ public class FeatureBlock {
 	private Button fFilterButton;
 	private Label fCounter;
 
+	private Button fFeatureAutoAddDependenciesButton;
 	private Button fFeatureWorkspaceButton;
 	private Button fAutoValidate;
 	private Button fValidateButton;
@@ -809,6 +810,9 @@ public class FeatureBlock {
 
 		fFeatureWorkspaceButton = SWTFactory.createCheckButton(treeGroup, PDEUIMessages.FeatureBlock_UseWorkspaceFeatures, null, true, 2);
 		fFeatureWorkspaceButton.addSelectionListener(fListener);
+
+		fFeatureAutoAddDependenciesButton = SWTFactory.createCheckButton(treeGroup, PDEUIMessages.FeatureBlock_AutoAddDependencies, null, false, 2);
+		fFeatureAutoAddDependenciesButton.addSelectionListener(fListener);
 
 		Label separator = new Label(composite, SWT.SEPARATOR | SWT.HORIZONTAL);
 		separator.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -1025,6 +1029,7 @@ public class FeatureBlock {
 		}
 		String featureLocation = config.getAttribute(IPDELauncherConstants.FEATURE_DEFAULT_LOCATION, IPDELauncherConstants.LOCATION_WORKSPACE);
 		fFeatureWorkspaceButton.setSelection(featureLocation.equalsIgnoreCase(IPDELauncherConstants.LOCATION_WORKSPACE));
+		fFeatureAutoAddDependenciesButton.setSelection(config.getAttribute(IPDELauncherConstants.AUTOMATIC_ADD_DEPENDENCIES, false));
 		fAutoValidate.setSelection(config.getAttribute(IPDELauncherConstants.AUTOMATIC_VALIDATE, false));
 
 		// If the workspace plug-in state has changed (project closed, etc.) the launch config needs to be updated without making the tab dirty
@@ -1052,6 +1057,7 @@ public class FeatureBlock {
 		config.setAttribute(IPDELauncherConstants.FEATURE_DEFAULT_LOCATION, fFeatureWorkspaceButton.getSelection() ? IPDELauncherConstants.LOCATION_WORKSPACE : IPDELauncherConstants.LOCATION_EXTERNAL);
 		config.setAttribute(IPDELauncherConstants.FEATURE_PLUGIN_RESOLUTION, fWorkspacePluginButton.getSelection() ? IPDELauncherConstants.LOCATION_WORKSPACE : IPDELauncherConstants.LOCATION_EXTERNAL);
 		config.setAttribute(IPDELauncherConstants.AUTOMATIC_VALIDATE, fAutoValidate.getSelection());
+		config.setAttribute(IPDELauncherConstants.AUTOMATIC_ADD_DEPENDENCIES, fFeatureAutoAddDependenciesButton.getSelection());
 		savePluginState(config);
 		saveSortOrder();
 		updateCounter();
