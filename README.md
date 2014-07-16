@@ -1,4 +1,4 @@
-Patches for Eclipse PDE feature-based launch configurations
+Patches for Eclipse PDE feature-based launch configurations [![Build Status](https://travis-ci.org/glerup/eclipse-pde-launcher-patches.svg?branch=patch%2Fpde-feature-launch)](https://travis-ci.org/glerup/eclipse-pde-launcher-patches)
 ===========================================================
 
 This project provides a Feature Patch that solves two annoyances when using feature-based
