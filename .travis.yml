@@ -1,0 +1,9 @@
+language: java
+
+before_install: cd com.deltek.pde.launching.updatesite
+
+script: mvn verify
+
+jdk:
+  - oraclejdk7
+  - oraclejdk8
