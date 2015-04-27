@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.deltek.pde.launching</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.44</version>
+    <version>1.0.442</version>
     <relativePath>../com.deltek.pde.launching.parent</relativePath>
   </parent>
   <groupId>com.deltek.pde.launching</groupId>

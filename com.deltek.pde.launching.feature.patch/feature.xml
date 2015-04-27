@@ -2,7 +2,7 @@
 <feature
       id="com.deltek.pde.launching.feature.patch"
       label="PDE Feature Launcher Fixes"
-      version="1.0.44"
+      version="1.0.442"
       provider-name="Deltek">
 
    <description>
@@ -34,7 +34,7 @@ THE SOFTWARE.
    </license>
 
    <requires>
-      <import feature="org.eclipse.pde" version="3.10.0" patch="true"/>
+      <import feature="org.eclipse.pde" version="3.10.1" patch="true"/>
    </requires>
 
    <plugin
